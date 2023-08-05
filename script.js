@@ -2,16 +2,28 @@
     - Include a check to see if the user inputs a value out of scope of the desired values (1-100)
     - It should be compared to a variable named: numberToGuess
 */
-
+let computersNumber = Math.floor(Math.random() * 100) + 1;
 function randomNumber(userGuess, computersNumber) {
 
     // YOUR CODE BELOW
-
-
-
+    if (userGuess < 1 || userGuess > 100) {
+        console.log("line 10 console log", userGuess);
+        return ("Please input a number between 1 and 100");
+    } else if (userGuess < computersNumber) {
+            return (`${userGuess} is Too low! Try Again.`);
+        } else if (userGuess > computersNumber) {
+            return (`${userGuess} is Too high! Try again.`);
+        } else {
+            return ("Congratulations! You've guessed the number.");
+        
+        }
 
     // YOUR CODE ABOVE
 };
+
+let currentGuess = 50;
+let lowerLimit = 1;
+let upperLimit = 100;
 
 
 
@@ -32,11 +44,14 @@ function randomNumber(userGuess, computersNumber) {
 
 function startCompGuess(num) {
     // This should return a string that denotes the first guessed number
-
-    // YOUR CODE ...
-
-
+currentGuess = 50;
+lowerLimit = 1;
+upperLimit = 100;
+return "Is your number " + currentGuess;
 }
+// YOUR CODE ...
+
+
 
 function compGuess(reply) {
     /* 
@@ -44,6 +59,13 @@ function compGuess(reply) {
 
     This should return a string indicating the computers response.
     */
-
+if (reply === "lower") {
+    upperLimit = currentGuess - 1;
+    } else if (reply === "higher") {
+        lowerLimit = currentGuess + 1;
+ } else if (reply === "correct") {
+    return "I guessed it! Your number was " + currentGuess + " . ";
+ }
+currentGuess = Math.floor((lowerLimit + upperLimit) / 2);
+return "Is your number " + currentGuess + "?";
 }
-
