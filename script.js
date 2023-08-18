@@ -3,15 +3,15 @@
     - It should be compared to a variable named: numberToGuess
 */
 let computersNumber = Math.floor(Math.random() * 100) + 1;
-function randomNumber(userGuess, computersNumber) {
+function randomNumber(userGuess, computersNumber) {  
 
     // YOUR CODE BELOW
     if (userGuess < 1 || userGuess > 100) {
         console.log("line 10 console log", userGuess);
         return ("Please input a number between 1 and 100");
-    } else if (userGuess < computersNumber) {
+    } else if (userGuess < computersNumber) { 
             return (`${userGuess} is Too low! Try Again.`);
-        } else if (userGuess > computersNumber) {
+        } else if (userGuess > computersNumber) {  
             return (`${userGuess} is Too high! Try again.`);
         } else {
             return ("Congratulations! You've guessed the number.");
@@ -21,11 +21,14 @@ function randomNumber(userGuess, computersNumber) {
     // YOUR CODE ABOVE
 };
 
-let currentGuess = 50;
+let currentNumber = 50;
 let lowerLimit = 1;
 let upperLimit = 100;
 
-
+const createGuess = () => {
+    currentNumber = Math.floor(Math.random() * (highest - lowest + 1) + lowest);
+    return currentNumber;
+}
 
 //* Have the Computer Guess your Number ---------------------------------------------
 /* 
@@ -44,28 +47,38 @@ let upperLimit = 100;
 
 function startCompGuess(num) {
     // This should return a string that denotes the first guessed number
-currentGuess = 50;
+currentNumber = 50;  
 lowerLimit = 1;
 upperLimit = 100;
-return "Is your number " + currentGuess;
+return "Is your number " + currentNumber + "?";  
 }
 // YOUR CODE ...
 
 
-
-function compGuess(reply) {
     /* 
     *   The parameter "reply" will either be passing "lower", "correct", or "higher". This should be considered when evaluating th elogic and response.
 
     This should return a string indicating the computers response.
     */
-if (reply === "lower") {
-    upperLimit = currentGuess - 1;
-    } else if (reply === "higher") {
-        lowerLimit = currentGuess + 1;
- } else if (reply === "correct") {
-    return "I guessed it! Your number was " + currentGuess + " . ";
- }
-currentGuess = Math.floor((lowerLimit + upperLimit) / 2);
-return "Is your number " + currentGuess + "?";
-}
+   let lowest = 1;
+   let highest = 100;
+function compGuess(reply) {
+        switch(reply) {
+            case "lower":
+                highest = currentNumber - 1;
+                createGuess();
+                break;
+                case "higher":
+                    lowest = currentNumber + 1;
+                    createGuess();
+                    break;
+                    case "correct":
+                        return "I guessed it! Your number was " + currentNumber + " . ";
+                        default:
+                            return "Invalid input. Please provide a correct reply.";
+        }
+        return "Is your number " + currentNumber + "?";  
+    }
+        currentNumber = Math.floor((lowest + highest) / 2);
+ 
+
