@@ -2,6 +2,7 @@
     - Include a check to see if the user inputs a value out of scope of the desired values (1-100)
     - It should be compared to a variable named: numberToGuess
 */
+console.log("hello")
 let computersNumber = Math.floor(Math.random() * 100) + 1;
 function randomNumber(userGuess, computersNumber) {  
 
@@ -21,12 +22,15 @@ function randomNumber(userGuess, computersNumber) {
     // YOUR CODE ABOVE
 };
 
-let currentNumber = 50;
-let lowerLimit = 1;
-let upperLimit = 100;
+let currentNumber;
+let lowest;
+let highest;
+let guess = 0;
 
 const createGuess = () => {
     currentNumber = Math.floor(Math.random() * (highest - lowest + 1) + lowest);
+    guess++
+    console.log("currentNumber:", currentNumber)
     return currentNumber;
 }
 
@@ -47,9 +51,10 @@ const createGuess = () => {
 
 function startCompGuess(num) {
     // This should return a string that denotes the first guessed number
-currentNumber = 50;  
-lowerLimit = 1;
-upperLimit = 100;
+    lowest = 1;
+    highest = 100;
+    currentNumber = 50
+    createGuess()
 return "Is your number " + currentNumber + "?";  
 }
 // YOUR CODE ...
@@ -60,12 +65,12 @@ return "Is your number " + currentNumber + "?";
 
     This should return a string indicating the computers response.
     */
-   let lowest = 1;
-   let highest = 100;
+ 
 function compGuess(reply) {
         switch(reply) {
             case "lower":
                 highest = currentNumber - 1;
+                console.log("highest:", highest)
                 createGuess();
                 break;
                 case "higher":
@@ -73,12 +78,12 @@ function compGuess(reply) {
                     createGuess();
                     break;
                     case "correct":
-                        return "I guessed it! Your number was " + currentNumber + " . ";
+                        return "I guessed it! Your number was " + currentNumber + " . It took me " + guess + " guesses";
                         default:
                             return "Invalid input. Please provide a correct reply.";
         }
         return "Is your number " + currentNumber + "?";  
     }
-        currentNumber = Math.floor((lowest + highest) / 2);
+       // currentNumber = Math.floor((lowest + highest) / 2);
  
 
